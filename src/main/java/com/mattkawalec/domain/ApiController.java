@@ -3,6 +3,7 @@ package com.mattkawalec.domain;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,15 +15,36 @@ public class ApiController {
 	@Autowired
 	private ApiService apiService;
 	
+	@RequestMapping(method = RequestMethod.POST, value = "/add_product")
+	public void addProduct(@RequestBody Product product) {
+		apiService.addProduct(product);
+	}
+	
 	@RequestMapping("/products/getall")
 	public List<Product> getProducts(){
 		return apiService.getProducts();
 	}
-
-	@RequestMapping(method = RequestMethod.POST, value = "/products/add")
-	public void addProduct(@RequestBody Product product) {
-		apiService.addProduct(product);
+	
+	@RequestMapping("/products/{id}")
+	public Product getProduct(@PathVariable String id)
+	{
+		return apiService.getProduct(id);
 	}
+	
+	@RequestMapping(method=RequestMethod.PUT, value="/update_product/{id}")
+	public void updateProduct(@RequestBody Product product, @PathVariable String id)
+	{
+		apiService.updateProduct(product, id);
+	}
+
+	@RequestMapping("/test")
+	public String getBeers(){
+		return apiService.test();
+	}
+	
+/*	public void addProduct(@RequestBody Product product) {
+		apiService.addProduct(product);
+	}*/
 
 }
 

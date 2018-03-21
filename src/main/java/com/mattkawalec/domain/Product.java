@@ -1,6 +1,13 @@
 package com.mattkawalec.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Product {
+	@Id
+	//@GeneratedValue
 	private String productId;
 	private String fullName;
 	private double quantity;
@@ -8,6 +15,13 @@ public class Product {
 	
 	public Product() {
 		super();
+	}
+
+	public Product(String fullName, double quantity, double price) {
+		super();
+		this.fullName = fullName;
+		this.quantity = quantity;
+		this.price = price;
 	}
 
 	public Product(String productId, String fullName, double quantity, double price) {

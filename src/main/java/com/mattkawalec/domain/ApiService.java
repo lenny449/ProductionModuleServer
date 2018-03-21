@@ -3,22 +3,60 @@ package com.mattkawalec.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ApiService {
 	
+	@Autowired
+	DatabaseConnection databaseConnection;
+	
 	private List<Product> productList = new ArrayList<>();
 
 	public void addProduct(Product product) {
-		// TODO Auto-generated method stub
-		
+		databaseConnection.entityManager.getTransaction().begin();
+		databaseConnection.entityManager.persist(product);
+		databaseConnection.entityManager.getTransaction().commit();
+	}
+	
+	public Product getProduct(String id) {
+		Product tempProduct;
+		databaseConnection.entityManager.getTransaction().begin();
+		tempProduct = databaseConnection.entityManager.find(Product.class, id);
+		databaseConnection.entityManager.getTransaction().commit();
+		return tempProduct;
 	}
 
 	public List<Product> getProducts() {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public void updateProduct(Product product, String id) {
+		Product tempProduct;
+		databaseConnection.entityManager.getTransaction().begin();
+		tempProduct = databaseConnection.entityManager.find(Product.class, id);
+		T.t("jestem w update product");
+		//tempProduct = product;
+		tempProduct.setPrice(10.0);
+		databaseConnection.entityManager.getTransaction().commit();		
+	}
+
+	public String test() {	
+		databaseConnection.entityManager.getTransaction().begin();
+		databaseConnection.entityManager.persist(new Product("LE5", "Lezajsk5", 1.0, 2.8));
+		databaseConnection.entityManager.getTransaction().commit();
+		return "test przepriowadzony";
+	}
+
+
+
+	
 
 }
 
