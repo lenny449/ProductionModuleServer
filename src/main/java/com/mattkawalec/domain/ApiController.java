@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ApiController {
 
+	// Function connected with Product.class Objects
+	
 	@Autowired
 	private ApiService apiService;
 	
@@ -20,9 +22,15 @@ public class ApiController {
 		apiService.addProduct(product);
 	}
 	
-	@RequestMapping("/products/getall")
-	public List<Product> getProducts(){
-		return apiService.getProducts();
+	@RequestMapping(method=RequestMethod.PUT, value="/delete_product/{id}")
+	public void deleteProduct(@PathVariable String id)
+	{
+		apiService.deleteProduct(id);
+	}
+	
+	@RequestMapping("/get_all_products")
+	public List<Product> getAllProducts(){
+		return apiService.getAllProducts();
 	}
 	
 	@RequestMapping("/products/{id}")
@@ -37,10 +45,40 @@ public class ApiController {
 		apiService.updateProduct(product, id);
 	}
 
+	// Function connected with Recipe.class Objects
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/add_recipe")
+	public void addProduct(@RequestBody Recipe recipe) {
+		
+		T.t("jestem w recipe post");
+		apiService.addRecipe(recipe);
+	}
+	
+	@RequestMapping(method=RequestMethod.PUT, value="/delete_recipe/{id}")
+	public void deleteRecipe(@PathVariable String id)
+	{
+		apiService.deleteRecipe(id);
+	}
+	
+	@RequestMapping("/get_all_recipe")
+	public List<Recipe> getAllRecipe(){
+		return apiService.getAllRecipe();
+	}
+	
+	@RequestMapping("/recipe/{id}")
+	public Recipe getRecipe(@PathVariable String id)
+	{
+		return apiService.getRecipe(id);
+	}
+	
+	// Test
+	
 	@RequestMapping("/test")
-	public String getBeers(){
+	public String doTest(){
 		return apiService.test();
 	}
+	
+	
 	
 /*	public void addProduct(@RequestBody Product product) {
 		apiService.addProduct(product);

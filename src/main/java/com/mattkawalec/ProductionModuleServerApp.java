@@ -26,5 +26,4 @@ public class ProductionModuleServerApp {
 		T.t("chyba dziala");		
 	}
 	
-
 }
