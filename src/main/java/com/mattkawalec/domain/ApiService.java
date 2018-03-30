@@ -57,8 +57,7 @@ public class ApiService {
 		databaseConnection.entityManager.getTransaction().begin();
 		tempProduct = databaseConnection.entityManager.find(Product.class, id);
 		databaseConnection.entityManager.remove(tempProduct);
-		databaseConnection.entityManager.persist(product);
-		
+		databaseConnection.entityManager.persist(product);		
 		databaseConnection.entityManager.getTransaction().commit();		
 	}
 
@@ -69,7 +68,7 @@ public class ApiService {
 	public void addRecipe(Recipe recipe) {
 		databaseConnection.entityManager.getTransaction().begin();
 		databaseConnection.entityManager.persist(recipe);
-		for(ProductQuantityPair pair : recipe.receipeList) {
+		for(ProductQuantityPair pair : recipe.recipeList) {
 			databaseConnection.entityManager.persist(pair);
 		}
 		databaseConnection.entityManager.getTransaction().commit();	
@@ -98,6 +97,58 @@ public class ApiService {
 		databaseConnection.entityManager.getTransaction().commit();
 		return tempRecipe;
 	}
+	
+	public void updateRecipe(Recipe recipe, String id) {
+		Recipe tempRecipe;
+		databaseConnection.entityManager.getTransaction().begin();
+		tempRecipe = databaseConnection.entityManager.find(Recipe.class, id);
+		databaseConnection.entityManager.remove(tempRecipe);
+		databaseConnection.entityManager.persist(recipe);		
+		databaseConnection.entityManager.getTransaction().commit();	
+	}
+	
+	// Function connected with Document Objects
+
+	public void addDocument(Document document) {
+		databaseConnection.entityManager.getTransaction().begin();
+		databaseConnection.entityManager.persist(document);
+		for(ProductQuantityPair pair : document.recipeList) {
+			databaseConnection.entityManager.persist(pair);
+		}
+		databaseConnection.entityManager.getTransaction().commit();	
+	}
+
+	public void deleteDocument(String id) {
+		Document tempDocument;
+		databaseConnection.entityManager.getTransaction().begin();
+		tempDocument = databaseConnection.entityManager.find(Document.class, id);
+		databaseConnection.entityManager.remove(tempDocument);		
+		databaseConnection.entityManager.getTransaction().commit();	
+	}
+
+	public List<Document> getAllDocuments() {
+		TypedQuery<Document> query = databaseConnection.entityManager.createQuery("select e from Document e", Document.class);
+		List<Document> documentList = query.getResultList();
+		return documentList;
+	}
+
+	
+	public Document getDocument(String id) {
+		Document tempDocument;
+		databaseConnection.entityManager.getTransaction().begin();
+		tempDocument = databaseConnection.entityManager.find(Document.class, id);
+		databaseConnection.entityManager.getTransaction().commit();
+		return tempDocument;
+	}
+	
+	public void updateDocument(Document document, String id) {
+		Document tempDocument;
+		databaseConnection.entityManager.getTransaction().begin();
+		tempDocument = databaseConnection.entityManager.find(Document.class, id);
+		databaseConnection.entityManager.remove(tempDocument);
+		databaseConnection.entityManager.persist(document);		
+		databaseConnection.entityManager.getTransaction().commit();	
+	}
 
 	public String test() {	
 		
@@ -116,6 +167,8 @@ public class ApiService {
 		databaseConnection.entityManager.getTransaction().commit();*/		
 		return null;
 	}
+
+
 
 	
 

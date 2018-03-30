@@ -15,14 +15,12 @@ public class Recipe {
 	@Id
 	String recipeId;
 	String fullName;
-	
+	String resultProductId;
 	double workHours;
-	
-	//@Embedded
-	//Product3 p3;
+
 	
 	@OneToMany
-	List<ProductQuantityPair> receipeList;
+	List<ProductQuantityPair> recipeList;
 	
 	public Recipe() {
 		super();
@@ -33,8 +31,9 @@ public class Recipe {
 		super();
 		this.recipeId = recipeId;
 		this.fullName = fullName;
+		this.resultProductId = resultProductId;
 		this.workHours = workHours;
-		this.receipeList = receipeList;
+		this.recipeList = receipeList;
 	}
 
 	public String getRecipeId() {
@@ -53,6 +52,14 @@ public class Recipe {
 		this.fullName = fullName;
 	}
 
+	public String getResultProductId() {
+		return resultProductId;
+	}
+
+	public void setResultProductId(String resultProductId) {
+		this.resultProductId = resultProductId;
+	}
+
 	public double getWorkHours() {
 		return workHours;
 	}
@@ -61,13 +68,15 @@ public class Recipe {
 		this.workHours = workHours;
 	}
 
-	public List<ProductQuantityPair> getReceipeList() {
-		return receipeList;
+	public List<ProductQuantityPair> getRecipeList() {
+		return recipeList;
 	}
 
-	public void setReceipeList(List<ProductQuantityPair> receipeList) {
-		this.receipeList = receipeList;
+	public void setRecipeList(List<ProductQuantityPair> recipeList) {
+		this.recipeList = recipeList;
 	}
+
+
 
 	
 	

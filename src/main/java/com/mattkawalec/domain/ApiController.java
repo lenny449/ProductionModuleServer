@@ -71,6 +71,44 @@ public class ApiController {
 		return apiService.getRecipe(id);
 	}
 	
+	@RequestMapping(method=RequestMethod.PUT, value="/update_recipe/{id}")
+	public void updateRecipe(@RequestBody Recipe recipe, @PathVariable String id)
+	{
+		apiService.updateRecipe(recipe, id);
+	}
+	
+	// Function connected with Recipe.class Objects
+	
+		@RequestMapping(method = RequestMethod.POST, value = "/add_document")
+		public void addDocument(@RequestBody Document document) {
+			
+			T.t("jestem w document post");
+			apiService.addDocument(document);
+		}
+		
+		@RequestMapping(method=RequestMethod.PUT, value="/delete_document/{id}")
+		public void deleteDocument(@PathVariable String id)
+		{
+			apiService.deleteDocument(id);
+		}
+		
+		@RequestMapping("/get_all_document")
+		public List<Document> getAllDocuments(){
+			return apiService.getAllDocuments();
+		}
+		
+		@RequestMapping("/document/{id}")
+		public Document getDocument(@PathVariable String id)
+		{
+			return apiService.getDocument(id);
+		}
+		
+		@RequestMapping(method=RequestMethod.PUT, value="/update_document/{id}")
+		public void updateDocument(@RequestBody Document document, @PathVariable String id)
+		{
+			apiService.updateDocument(document, id);
+		}
+	
 	// Test
 	
 	@RequestMapping("/test")

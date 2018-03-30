@@ -10,16 +10,18 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Document {
+	public enum TypeOfTransaction {RW, PW, WZ, PZ};
+	
 	@Id
 	String documentId;
+	String description;
+	TypeOfTransaction typeOfTransaction;
 	
 	@OneToMany
-	List<ProductQuantityPair> receipeList;
+	List<ProductQuantityPair> recipeList;	
 	
 	public Document() {
 		super();
 	}
-
-
 	
 }

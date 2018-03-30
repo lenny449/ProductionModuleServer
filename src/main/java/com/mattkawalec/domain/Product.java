@@ -18,13 +18,6 @@ public class Product {
 		super();
 	}
 
-	public Product(String fullName, double quantity, double price) {
-		super();
-		this.fullName = fullName;
-		this.quantity = quantity;
-		this.price = price;
-	}
-
 	public Product(String productId, String fullName, double quantity, double price) {
 		super();
 		this.productId = productId;
@@ -64,7 +57,7 @@ public class Product {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-	
+
 	
 	
 }
