@@ -84,7 +84,7 @@ public class ApiService {
 
 	public List<Recipe> getAllRecipe() {
 		TypedQuery<Recipe> query = databaseConnection.entityManager.createQuery("select e from Recipe e", Recipe.class);
-		T.t("przeszedlem funkcje query");
+		T.t("przeszedlem funkcje query w getAllRecipe");
 		List<Recipe> recipeList = query.getResultList();
 		return recipeList;
 	}
