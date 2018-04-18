@@ -1,5 +1,6 @@
 package com.mattkawalec.domain;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,16 +12,29 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-public class Recipe {
+public class Recipe extends ElementOfDatabase  {
 	@Id
 	String recipeId;
 	String fullName;
 	String resultProductId;
 	double workHours;
 
-	
 	@OneToMany
 	List<ProductQuantityPair> recipeList;
+	
+	public List<Object> getElementsList() {
+		List<Object> elementsList = new ArrayList<>();
+		elementsList.add(this.recipeId);
+		elementsList.add(this.fullName);
+		elementsList.add(this.resultProductId);
+		elementsList.add(this.workHours);
+		return elementsList;
+	}
+	
+	public static String[] getLocalNames() {
+		String[] localNames = {"Id", "Nazwa", "Produkt końcowy", "Roboczogodziny"};
+		return localNames;
+	}
 	
 	public Recipe() {
 		super();

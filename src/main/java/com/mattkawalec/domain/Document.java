@@ -1,5 +1,6 @@
 package com.mattkawalec.domain;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Document {
+public class Document extends ElementOfDatabase  {
 	public enum TypeOfTransaction {RW, PW, WZ, PZ};
 	
 	@Id
@@ -20,6 +21,20 @@ public class Document {
 	
 	@OneToMany
 	List<ProductQuantityPair> recipeList;	
+	
+	public List<Object> getElementsList() {
+		List<Object> elementsList = new ArrayList<>();
+		elementsList.add(this.documentId);
+		elementsList.add(this.typeOfTransaction);
+		elementsList.add(this.description);
+		elementsList.add(this.createDate);
+		return elementsList;
+	}
+	
+	public static String[] getLocalNames() {
+		String[] localNames = {"Id", "Typ dokumentu", "Opis",  "Data utworzenia"};
+		return localNames;
+	}
 	
 	public Document() {
 		super();
