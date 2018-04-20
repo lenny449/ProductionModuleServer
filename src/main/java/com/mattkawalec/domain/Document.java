@@ -11,7 +11,7 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Document extends ElementOfDatabase  {
-	public enum TypeOfTransaction {RW, PW, WZ, PZ};
+	static public enum TypeOfTransaction {RW, PW, WZ, PZ};
 	
 	@Id
 	String documentId;

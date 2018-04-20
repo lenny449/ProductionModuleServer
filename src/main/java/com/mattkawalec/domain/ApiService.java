@@ -13,6 +13,8 @@ import javax.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mattkawalec.domain.Document.TypeOfTransaction;
+
 @Service
 public class ApiService {
 	
@@ -112,7 +114,7 @@ public class ApiService {
 	public void addDocument(Document document) {
 		databaseConnection.entityManager.getTransaction().begin();
 		databaseConnection.entityManager.persist(document);
-		for(ProductQuantityPair pair : document.recipeList) {
+		for(ProductQuantityPair pair : document.getRecipeList()) {
 			databaseConnection.entityManager.persist(pair);
 		}
 		databaseConnection.entityManager.getTransaction().commit();	
@@ -151,20 +153,20 @@ public class ApiService {
 	}
 
 	public String test() {	
+		ProductQuantityPair pqp1 = new ProductQuantityPair("HN", 4.0);
+		ProductQuantityPair pqp2 = new ProductQuantityPair("LE", 2.0);
+		List<ProductQuantityPair> listaPQP = new ArrayList<ProductQuantityPair>();
+		listaPQP.add(pqp1);
+		listaPQP.add(pqp2);
 		
-/*		Product p1 = new Product("LCH", "Lech", 4.0, 3.0);
-		ProductQuantityPair pair2 = new ProductQuantityPair("LE1", 13.0);
-		ProductQuantityPair pair3 = new ProductQuantityPair("ZE1", 13.0);
-		List<ProductQuantityPair> lista = new ArrayList<>();
-		lista.add(pair2);
-		lista.add(pair3);
-		Recipe r1 = new Recipe("RECEP3", "receptura na bimber3", 4.4, p1, lista);
-		databaseConnection.entityManager.getTransaction().begin();
-		databaseConnection.entityManager.persist(p1);
-		databaseConnection.entityManager.persist(pair2);
-		databaseConnection.entityManager.persist(pair3);
-		databaseConnection.entityManager.persist(r1);
-		databaseConnection.entityManager.getTransaction().commit();*/		
+		TypeOfTransaction tot = Document.TypeOfTransaction.PW;
+		
+		Recipe r1 = new Recipe("B1", "bimbrowanie", "BIMP1201", 4, listaPQP);
+		Document d1 = new Document("FS-44", "faktura", "2018-01-19", tot, listaPQP);
+		T.t("jestem w tescie");
+		//addRecipe(new Recipe());
+		addDocument(d1);
+	
 		return null;
 	}
 
