@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -20,6 +21,7 @@ public class Recipe extends ElementOfDatabase  {
 	double workHours;
 
 	@OneToMany
+	@JoinColumn(name="owner_recipe_id")
 	List<ProductQuantityPair> recipeList;
 	
 	public List<Object> getElementsList() {

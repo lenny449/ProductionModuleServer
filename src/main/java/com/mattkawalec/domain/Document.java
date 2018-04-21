@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -20,6 +21,7 @@ public class Document extends ElementOfDatabase  {
 	TypeOfTransaction typeOfTransaction;
 	
 	@OneToMany
+	@JoinColumn(name="owner_document_id")
 	List<ProductQuantityPair> recipeList;	
 	
 	public List<Object> getElementsList() {

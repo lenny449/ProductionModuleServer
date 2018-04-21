@@ -8,6 +8,8 @@ import javax.persistence.Id;
 public class ProductQuantityPair {
 	
 	@Id
+	@GeneratedValue
+	long id;
 	String pairedProductName;
 	double pairedQuantity;
 	
@@ -19,6 +21,14 @@ public class ProductQuantityPair {
 		super();
 		this.pairedProductName = pairedProductName;
 		this.pairedQuantity = pairedQuantity;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public String getPairedProductName() {

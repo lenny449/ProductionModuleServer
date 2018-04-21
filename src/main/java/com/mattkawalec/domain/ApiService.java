@@ -70,10 +70,13 @@ public class ApiService {
 	public void addRecipe(Recipe recipe) {
 		databaseConnection.entityManager.getTransaction().begin();
 		databaseConnection.entityManager.persist(recipe);
-		for(ProductQuantityPair pair : recipe.recipeList) {
+		for(ProductQuantityPair pair : recipe.getRecipeList()) {
 			databaseConnection.entityManager.persist(pair);
 		}
+		
 		databaseConnection.entityManager.getTransaction().commit();	
+		T.t("lemon");
+		
 	}
 
 	public void deleteRecipe(String id) {
@@ -153,19 +156,25 @@ public class ApiService {
 	}
 
 	public String test() {	
-		ProductQuantityPair pqp1 = new ProductQuantityPair("HN", 4.0);
-		ProductQuantityPair pqp2 = new ProductQuantityPair("LE", 2.0);
+		ProductQuantityPair pqp1 = new ProductQuantityPair("TA", 7.0);
+		ProductQuantityPair pqp2 = new ProductQuantityPair("LE", 3.0);
 		List<ProductQuantityPair> listaPQP = new ArrayList<ProductQuantityPair>();
 		listaPQP.add(pqp1);
 		listaPQP.add(pqp2);
 		
-		TypeOfTransaction tot = Document.TypeOfTransaction.PW;
+		TypeOfTransaction tot = Document.TypeOfTransaction.RW;
 		
-		Recipe r1 = new Recipe("B1", "bimbrowanie", "BIMP1201", 4, listaPQP);
-		Document d1 = new Document("FS-44", "faktura", "2018-01-19", tot, listaPQP);
+		Recipe r1 = new Recipe("B12", "bimbrowanie", "BIMP1201", 4, listaPQP);
+		Document d1 = new Document("FS-52", "faktura", "2018-01-19", tot, listaPQP);
 		T.t("jestem w tescie");
-		//addRecipe(new Recipe());
+		
 		addDocument(d1);
+		//addRecipe(r1);
+		/*databaseConnection.entityManager.getTransaction().begin();
+		databaseConnection.entityManager.persist(r1);
+		databaseConnection.entityManager.persist(pqp1);
+		databaseConnection.entityManager.persist(pqp2);
+		databaseConnection.entityManager.getTransaction().commit();	*/
 	
 		return null;
 	}
