@@ -9,6 +9,8 @@ import javax.persistence.Persistence;
 
 import org.springframework.stereotype.Service;
 
+// Service responsible for connection with database
+
 @Service
 public class DatabaseConnection {
 	

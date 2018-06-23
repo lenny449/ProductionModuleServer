@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
+//The Class that defines income and expense documents 
+
 @Entity
 public class Document extends ElementOfDatabase  {
 	static public enum TypeOfTransaction {RW, PW, WZ, PZ};

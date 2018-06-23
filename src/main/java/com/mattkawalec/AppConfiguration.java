@@ -5,6 +5,8 @@ import org.springframework.context.annotation.Configuration;
 
 import com.mattkawalec.domain.DatabaseConnection;
 
+
+
 @Configuration
 public class AppConfiguration {
 	@Bean

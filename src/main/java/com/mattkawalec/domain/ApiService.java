@@ -15,6 +15,8 @@ import org.springframework.stereotype.Service;
 
 import com.mattkawalec.domain.Document.TypeOfTransaction;
 
+// Services connected with Rest Controller
+
 @Service
 public class ApiService {
 	

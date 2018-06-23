@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+//The Class that defines single component or product
+
 @Entity
 public class Product extends ElementOfDatabase {
 	@Id

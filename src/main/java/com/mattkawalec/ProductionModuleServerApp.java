@@ -13,6 +13,7 @@ import com.mattkawalec.domain.DatabaseConnection;
 import com.mattkawalec.domain.Product;
 import com.mattkawalec.domain.T;
 
+
 @SpringBootApplication
 public class ProductionModuleServerApp {
 
@@ -22,8 +23,7 @@ public class ProductionModuleServerApp {
 		context.registerShutdownHook();
 		
 		//context.close();
-		//DatabaseConnection databaseConnection = context.getBean(DatabaseConnection.class);		
-		T.t("chyba dziala");		
+		//DatabaseConnection databaseConnection = context.getBean(DatabaseConnection.class);				
 	}
 	
 }
